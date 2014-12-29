@@ -1,5 +1,6 @@
 body { 
     font-size: 93.8%;    
+    font-family: "Nicolas Frespech";
     background-color: #FFFFFF; 
     background-image: 
       -webkit-linear-gradient(0deg, transparent .05em, rgba(0,0,124,.25) .05em, rgba(0,0,124,.25) .125000em, transparent .125000em),
@@ -18,6 +19,10 @@ body {
       inear-gradient(rgba(0,0,124,.25) .062500em, transparent .062500em);
     background-size: 3em 3em;  
     background-position: 0 -0.5em; 
+}
+
+h1 {
+    color: red;
 }
  
  
