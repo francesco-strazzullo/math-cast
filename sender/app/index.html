@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="fable-on">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>MathCast</title>
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css" />
+        <!-- endbower -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/underscore.string/lib/underscore.string.js"></script>
+        <script src="bower_components/bootstrap-sweetalert/lib/sweet-alert.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <!-- endbower -->
+        <script src="js/app.js"></script>
+        <script src="js/controllers.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+        <script type="text/javascript">
+            var session;
+
+            window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
+                if (loaded) {
+                    initializeCastApi();
+                } else {
+                    console.log(errorInfo);
+                }
+            };
+
+            initializeCastApi = function() {
+                var sessionRequest = new chrome.cast.SessionRequest('E7849B6E');
+                var apiConfig = new chrome.cast.ApiConfig(
+                                                    sessionRequest,
+                                                    sessionListener,
+                                                    receiverListener);
+                chrome.cast.initialize(
+                                apiConfig,
+                                onInitSuccess,
+                                onError);
+
+            };
+
+            onInitSuccess = function(e) {
+                console.log("initialization succesful");
+                chrome.cast.requestSession(sessionListener, onError);
+            };
+
+            onError = function(e) {
+                console.log(e);
+            };
+
+            receiverListener = function(e) {
+                if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
+                    console.log("device available");
+                }
+            };
+
+            sessionListener = function(s) {
+                console.log("session obtained");
+                session = s;
+            };
+
+            onMessageSuccess = function(){
+                console.log('message sent');
+            };
+
+            onMessageError = function(){
+                console.log('message not sent');
+            };
+
+            receiverGoTo = function(to){
+                if (session!=null) {
+                    session.sendMessage('urn:x-cast:it.strazz.cast.math.state', to, onMessageSuccess,onMessageError);
+                };
+            };
+
+            receiverPlay = function(good){
+              if (session!=null) {
+                session.sendMessage('urn:x-cast:it.strazz.cast.math.sound', good ? 'good' : 'error', onMessageSuccess,onMessageError);
+              };
+            };
+        </script>
+    </head>
+    <body>
+      <div class="container text-center">
+        <h1 style="font-size:35pt;">Math Cast</h1>
+          <div ui-view>
+          </div>
+        </div>
+    </body>
+</html>
