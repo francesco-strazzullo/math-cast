@@ -17,6 +17,11 @@ angular
           url: "/home",
           controller: 'Home',
           templateUrl: "views/home.tpl.html"
+        })
+        .state('question1', {
+          url: "/1",
+          controller: 'Question1',
+          templateUrl: "views/question1.tpl.html"
         });
     }
   ]);
