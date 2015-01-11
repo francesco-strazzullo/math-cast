@@ -1,7 +1,10 @@
-body{
-    height:720PX;
-    width:1280PX;
+body {
+    height: 720PX;
+    width: 1280PX;
     background-image: url("../imgs/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left top;
     background-color: #000000;
     color: #FFFFFF;
     font-family: 'Gloria Hallelujah', cursive;
