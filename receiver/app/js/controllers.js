@@ -34,6 +34,12 @@ angular.module('math-cast')
 		}
 
 		$scope.castReceiverManager.start();
+
+		$scope.score = 0;
+
+		$scope.$on("question-success",function(){
+			$scope.score++;
+		});
 	}])
 	.controller('Home', ['$scope', '$state', function($scope, $state) {
 

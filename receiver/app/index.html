@@ -12,9 +12,12 @@
     <title>MathCast</title>
 </head>
 
-<body ng-controller="Root">
-    <h1 class="text-center">Math Cast</h1>
+<body class="text-center" ng-controller="Root">
+    <h1>Math Cast</h1>
     <div ui-view>
+    </div>
+    <div class="score">
+      <h3>Punteggio: {{score}}</h3>
     </div>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
