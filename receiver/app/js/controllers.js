@@ -1,5 +1,5 @@
 angular.module('math-cast')
-	.controller('Root', ['$scope', '$state', function($scope, $state) {
+	.controller('Root', ['$scope', '$state', 'QuestionsData',function($scope, $state) {
 		var audioPath = "audio/";
 		var manifest = [{
 			id: "Good",
@@ -26,7 +26,20 @@ angular.module('math-cast')
 		$scope.soundBus = $scope.castReceiverManager.getCastMessageBus('urn:x-cast:it.strazz.cast.math.sound');
 
 		$scope.stateBus.onMessage = function(event) {
-			$state.go(event.data);
+			console.log(event);
+			if (event.data === 'start') {
+				$state.go("question0");
+			} else {
+				if (QuestionsData[$scope.currentQuestion].solutionIndex === parseInt(event.data, 10)) {
+					createjs.Sound.play('Good');
+					$scope.score++;
+				} else {
+					createjs.Sound.play('Bad');
+				}
+
+				$scope.currentQuestion++;
+				$state.go("question" + scope.currentQuestion);
+			}
 		}
 
 		$scope.soundBus.onMessage = function(event) {
@@ -35,11 +48,10 @@ angular.module('math-cast')
 
 		$scope.castReceiverManager.start();
 
+		$scope.currentQuestion = 0;
 		$scope.score = 0;
 
-		$scope.$on("question-success",function(){
-			$scope.score++;
-		});
+
 	}])
 	.controller('Home', ['$scope', '$state', function($scope, $state) {
 

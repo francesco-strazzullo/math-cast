@@ -1,7 +1,7 @@
 angular.module('math-cast')
   .controller('Home', ['$scope', '$state', function($scope, $state) {
     $scope.start = function() {
-      window.receiverGoTo('question1');
+      window.sendToReceiver('start');
       $state.go('question1');
     };
   }])

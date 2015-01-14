@@ -75,7 +75,7 @@
                 console.log('message not sent');
             };
 
-            receiverGoTo = function(to){
+            sendToReceiver = function(to){
                 if (session!=null) {
                     session.sendMessage('urn:x-cast:it.strazz.cast.math.state', to, onMessageSuccess,onMessageError);
                 };

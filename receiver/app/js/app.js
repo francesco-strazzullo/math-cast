@@ -17,10 +17,17 @@ angular
           controller: 'Home',
           templateUrl: "views/home.tpl.html"
         })
+        .state('question0', {
+          url: "/0",
+          templateUrl: "views/question0.tpl.html"
+        })
         .state('question1', {
           url: "/1",
-          controller: 'Question1',
           templateUrl: "views/question1.tpl.html"
+        })
+        .state('question2', {
+          url: "/2",
+          templateUrl: "views/question2.tpl.html"
         });
     }
   ]);
