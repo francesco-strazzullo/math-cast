@@ -1,0 +1,7 @@
+<h1>Domanda numero {{currentQuestion + 1}}</h1>
+
+<button
+  ng-repeat="value in data[currentQuestion].possibleValues"
+  type="button"
+  class="btn btn-primary btn-lg btn-block"
+  ng-click="answer($index);">{{value}}</button>

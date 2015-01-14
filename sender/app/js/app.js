@@ -18,10 +18,14 @@ angular
           controller: 'Home',
           templateUrl: "views/home.tpl.html"
         })
-        .state('question1', {
-          url: "/1",
-          controller: 'Question1',
-          templateUrl: "views/question1.tpl.html"
+        .state('questions', {
+          url: "/questions",
+          controller: 'Questions',
+          templateUrl: "views/questions.tpl.html"
+        })
+        .state('end', {
+          url: "/end",
+          templateUrl: "views/end.tpl.html"
         });
     }
   ]);
